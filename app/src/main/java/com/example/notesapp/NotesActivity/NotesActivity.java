@@ -30,35 +30,37 @@ public class NotesActivity extends AppCompatActivity {
         mBottomNavigationView.setOnNavigationItemSelectedListener(mListener);
 
 
-
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mListener=new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private final BottomNavigationView.OnNavigationItemSelectedListener mListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFrag=null;
-            switch (item.getItemId()){
+            Fragment selectedFrag = null;
+            switch (item.getItemId()) {
                 case R.id.menuItem_notes:
-                    selectedFrag=new NotesViewer();
+                    selectedFrag = new NotesViewer();
+                    item.setChecked(true);
                     break;
                 case R.id.menuItem_schedule:
-                    selectedFrag=new NotesScheduler();
+                    selectedFrag = new NotesScheduler();
+                    item.setChecked(true);
                     break;
                 case R.id.menuItem_profile:
-                    selectedFrag=new Profile();
+                    selectedFrag = new Profile();
+                    item.setChecked(true);
                     break;
 
             }
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container,selectedFrag)
+                    .replace(R.id.fragment_container, selectedFrag)
                     .commit();
             return false;
         }
     };
 
-        private void launchDefaultFragment () {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new NotesViewer())
-                    .commit();
-        }
+    private void launchDefaultFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new NotesViewer())
+                .commit();
     }
+}
