@@ -28,7 +28,7 @@ public abstract class NotesDatabase extends RoomDatabase {
                     // if no Migration object.
                     // Migration is not part of this practical.
                     .fallbackToDestructiveMigration()
-                    .addCallback(callback)
+//                    .addCallback(callback)
                     .build();
         }
 
@@ -55,9 +55,7 @@ public abstract class NotesDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            for(int i=0;i<100;i++){
-                mNotesDao.insert(note);
-            }
+            mNotesDao.deleteALL(); // delete all notes in app destroy
             return null;
         }
     }

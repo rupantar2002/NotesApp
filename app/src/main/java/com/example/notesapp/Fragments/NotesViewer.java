@@ -21,12 +21,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesViewer extends Fragment {
+public class NotesViewer extends Fragment implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFloatingActionButton;
     private NotesAdapter mNotesAdapter;
     private NotesViewModel mNotesViewModel;
+    private Context mContext;
 
 
     public NotesViewer() {
@@ -43,7 +44,10 @@ public class NotesViewer extends Fragment {
         mNotesViewModel= ViewModelProviders.of(this)
                 .get(NotesViewModel.class);
 
+        mContext=getContext();
         mNotesAdapter=new NotesAdapter();
+        mFloatingActionButton.setOnClickListener(this);
+
 
         populateRecyclerView();
 
@@ -61,4 +65,18 @@ public class NotesViewer extends Fragment {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.floatingActionButton_add_notes){
+            Toast.makeText(mContext, " Button clicked", Toast.LENGTH_SHORT).show();
+            launchAddNoteFragment();
+        }
+    }
+
+    private void launchAddNoteFragment() {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container,new CreateNote())
+                .addToBackStack(null)
+                .commit();
+    }
 }
