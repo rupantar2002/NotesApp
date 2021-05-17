@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.notesapp.DataModels.Note;
+import com.example.notesapp.MVVM.NotesViewModel;
 import com.example.notesapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -22,8 +25,8 @@ public class NotesViewer extends Fragment {
 
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFloatingActionButton;
-    private NotesAdapter notesAdapter;
-    private List<Note> list;
+    private NotesAdapter mNotesAdapter;
+    private NotesViewModel mNotesViewModel;
 
 
     public NotesViewer() {
@@ -37,68 +40,25 @@ public class NotesViewer extends Fragment {
         mFloatingActionButton=view.findViewById(R.id.floatingActionButton_add_notes);
         mRecyclerView=view.findViewById(R.id.recyclerView_notes);
 
-        Context context=getActivity().getApplication();
+        mNotesViewModel= ViewModelProviders.of(this)
+                .get(NotesViewModel.class);
 
-        notesAdapter=new NotesAdapter();
-        list=new ArrayList<>();
-        setList();
-        notesAdapter.setNotes(list);
-        mRecyclerView.setAdapter(notesAdapter);
+        mNotesAdapter=new NotesAdapter();
+
+        populateRecyclerView();
 
 
         return view;
     }
 
-    private void setList(){
-
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfn"
-        +"ibfniifnbifnbifnbfinbfbnfibbfnbjbfnibnfibfibnfibibfbifnbifnbifbn fibifb"+
-                "fuivbifviffibfibfibnfibnfibnfibnfibnifbnifbnifnbifnbifnb"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfninvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvknvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvknvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnv"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkffnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfninvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvknvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvknvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnv"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkffnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfninvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvknvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvknvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnv"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkffnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfisvbnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnnvn"));
-        list.add(new Note("MY title","bvdbdvbdivbvfvfknvkfnvfkvnkfnvkfnvkfnvkfnvkfnvkfvkfnvfnknvinvkisvbnvn"));
-
+    private void populateRecyclerView(){
+        mNotesViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(List<Note> notes) {
+                mNotesAdapter.setNotes(notes);
+                mRecyclerView.setAdapter(mNotesAdapter);
+            }
+        });
     }
+
 }
