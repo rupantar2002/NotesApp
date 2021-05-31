@@ -1,4 +1,4 @@
-package com.example.notesapp.Fragments;
+package com.example.notesapp.Fragments.NotesViewer;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.notesapp.DataModels.Note;
-import com.example.notesapp.MVVM.NotesViewModel;
+import com.example.notesapp.Fragments.AddAndUpdateNote.CreateNote;
+import com.example.notesapp.ViewModels.NotesViewModel;
 import com.example.notesapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NotesViewer extends Fragment implements View.OnClickListener {
@@ -46,6 +46,7 @@ public class NotesViewer extends Fragment implements View.OnClickListener {
 
         mContext=getContext();
         mNotesAdapter=new NotesAdapter();
+        mNotesAdapter.setOnRecyclerItemClickListener(mOnRecyclerItemClickListener);
         mFloatingActionButton.setOnClickListener(this);
 
 
@@ -73,10 +74,19 @@ public class NotesViewer extends Fragment implements View.OnClickListener {
         }
     }
 
+    private OnRecyclerItemClickListener mOnRecyclerItemClickListener=new OnRecyclerItemClickListener() {
+        @Override
+        public void onClick(Note note) {
+            Toast.makeText(mContext, " Clicked " + note.getTitle() +"\n"+note.getContent(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
     private void launchAddNoteFragment() {
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container,new CreateNote())
                 .addToBackStack(null)
                 .commit();
     }
+
+
 }

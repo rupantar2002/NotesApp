@@ -1,4 +1,4 @@
-package com.example.notesapp.MVVM;
+package com.example.notesapp.RoomPrecistance;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

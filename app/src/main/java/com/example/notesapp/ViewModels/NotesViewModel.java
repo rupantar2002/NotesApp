@@ -1,4 +1,4 @@
-package com.example.notesapp.MVVM;
+package com.example.notesapp.ViewModels;
 
 import android.app.Application;
 
@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.notesapp.DataModels.Note;
+import com.example.notesapp.Repository.NotesRepository;
 
 import java.util.List;
 

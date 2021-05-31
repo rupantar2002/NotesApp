@@ -19,6 +19,7 @@ public class Note {
         this.mContent = mContent;
     }
 
+
     public String getTitle() {
         return mTitle;
     }

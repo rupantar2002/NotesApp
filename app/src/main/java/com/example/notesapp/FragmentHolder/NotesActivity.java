@@ -1,4 +1,4 @@
-package com.example.notesapp.NotesActivity;
+package com.example.notesapp.FragmentHolder;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.notesapp.Fragments.NotesScheduler;
-import com.example.notesapp.Fragments.NotesViewer;
+import com.example.notesapp.Fragments.NotesViewer.NotesViewer;
 import com.example.notesapp.Fragments.Profile;
 import com.example.notesapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NotesActivity extends AppCompatActivity {
 
-    private static final String TAG = "NotesActivity";
+    private static final String TAG = "FragmentHolder";
 
     private BottomNavigationView mBottomNavigationView;
 

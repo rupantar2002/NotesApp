@@ -1,4 +1,4 @@
-package com.example.notesapp.MVVM;
+package com.example.notesapp.Repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.example.notesapp.DataModels.Note;
+import com.example.notesapp.RoomPrecistance.NotesDao;
+import com.example.notesapp.RoomPrecistance.NotesDatabase;
 
 import java.util.List;
 

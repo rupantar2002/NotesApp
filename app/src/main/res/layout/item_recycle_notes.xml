@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_title"
             android:text="Content"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
 
 
     </RelativeLayout>

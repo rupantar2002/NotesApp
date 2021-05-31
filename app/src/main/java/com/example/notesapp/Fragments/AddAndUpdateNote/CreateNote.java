@@ -1,4 +1,4 @@
-package com.example.notesapp.Fragments;
+package com.example.notesapp.Fragments.AddAndUpdateNote;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.notesapp.DataModels.Note;
-import com.example.notesapp.MVVM.NotesViewModel;
+import com.example.notesapp.ViewModels.NotesViewModel;
 import com.example.notesapp.R;
 
 public class CreateNote extends Fragment {
