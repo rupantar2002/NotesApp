@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.AddAndUpdateNote.CreateNote"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:context=".Fragments.AddAndUpdateNote.CreateNote">
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="5dp"/>
+        android:layout_height="?attr/actionBarSize">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_createNote"
+            style="@style/Widget.MaterialComponents.Toolbar.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            app:menu="@menu/menu_create_note_toolbar"
+            app:navigationIcon="@drawable/icon_back_arrow" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
-        <EditText
-            android:id="@+id/title_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Title :"
-            android:inputType="textMultiLine"/>
-    </ScrollView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Note"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="5dp"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/content_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Note"
-            android:layout_margin="5dp"
-            android:inputType="textMultiLine"/>
-    </ScrollView>
+        android:padding="10dp">
 
-    <Button
-        android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/title_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title :"
+                android:inputType="textMultiLine"
+                android:background="@color/white"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:id="@+id/content_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </LinearLayout>

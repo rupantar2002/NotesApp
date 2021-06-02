@@ -2,13 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menuItem_notes"
-        android:icon="@drawable/icons8_spiral_bound_booklet_64"
-        android:title="Add Notes" />
+        android:icon="@drawable/icon_collection"
+        android:title="@null" />
     <item android:id="@+id/menuItem_schedule"
-        android:icon="@drawable/icons8_schedule_52"
-        android:title="Schedule Notes"/>
-    <item android:id="@+id/menuItem_profile"
-        android:icon="@drawable/icons8_male_user_50"
-        android:title="Profile"/>
+        android:icon="@drawable/icon_checkbox"
+        android:title="@null"/>
+
 
 </menu>

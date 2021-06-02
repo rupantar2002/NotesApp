@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.notesapp.DataModels.Note;
 import com.example.notesapp.Repository.NotesRepository;
@@ -16,6 +17,8 @@ public class NotesViewModel extends AndroidViewModel {
     private NotesRepository mNotesRepository;
 
     private LiveData<List<Note>> mAllNotes;
+
+    private MutableLiveData<Note> mSharedNote=new MutableLiveData<>();
 
     public NotesViewModel(@NonNull Application application) {
         super(application);
@@ -31,4 +34,12 @@ public class NotesViewModel extends AndroidViewModel {
     public void update(Note note){mNotesRepository.update(note);}
     public void delete(Note note){mNotesRepository.delete(note);}
     public void deleteAll(){mNotesRepository.deleteAll();}
+
+    public void setSharedNote(Note note) {
+       mSharedNote.setValue(note);
+    }
+
+    public LiveData<Note> getSharedNote() {
+        return mSharedNote;
+    }
 }
